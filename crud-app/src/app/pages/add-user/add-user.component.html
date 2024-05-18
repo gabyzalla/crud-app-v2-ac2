@@ -1,0 +1,38 @@
+<form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="name">Nome:</label>
+      <input id="name" formControlName="name" type="text" required />
+      <div *ngIf="addUserForm.get('name')?.invalid && (addUserForm.get('name')?.dirty || addUserForm.get('name')?.touched)">
+        <small class="text-danger">Nome é obrigatório.</small>
+      </div>
+    </div>
+    <div>
+      <label for="email">E-mail:</label>
+      <input id="email" formControlName="email" type="email" required />
+      <div *ngIf="addUserForm.get('email')?.invalid && (addUserForm.get('email')?.dirty || addUserForm.get('email')?.touched)">
+        <small class="text-danger">Por favor insira um e-mail válido.</small>
+      </div>
+    </div>
+    <div>
+      <label for="role">Função:</label>
+      <select id="role" formControlName="role" required>
+        <option value="">Selecione uma função</option>
+        <option value="FE">Engenheiro de FE</option>
+        <option value="BE">Engenheiro de BE</option>
+        <option value="Data Analyst">Analista de dados</option>
+        <option value="Tech Lead">Líder Técnico</option>
+      </select>
+      <div *ngIf="addUserForm.get('role')?.invalid && (addUserForm.get('role')?.dirty || addUserForm.get('role')?.touched)">
+        <small class="text-danger">Função é obrigatória.</small>
+      </div>
+    </div>
+    <div>
+      <label for="password">Senha:</label>
+      <input id="password" formControlName="password" type="password" required />
+      <div *ngIf="addUserForm.get('password')?.invalid && (addUserForm.get('password')?.dirty || addUserForm.get('password')?.touched)">
+        <small class="text-danger">Senha deve ter entre 6 e 15 caracteres.</small>
+      </div>
+    </div>
+    <button type="submit" [disabled]="!addUserForm.valid">Salvar</button>
+  </form>
+  
